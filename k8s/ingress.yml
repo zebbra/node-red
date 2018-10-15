@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  labels:
+    app: node-red
+  name: node-red
+spec:
+  rules:
+  - host: node-red.kube.zebbra.ch
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: node-red
+          servicePort: http
