@@ -18,6 +18,7 @@ spec:
       containers:
       - name: node-red
         image: quay.io/zebbra/node-red:latest
+        imagePullPolicy: Always
         env: []
         ports:
         - containerPort: 1880
