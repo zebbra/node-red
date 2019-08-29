@@ -1,5 +1,13 @@
-FROM nodered/node-red-docker
+FROM nodered/node-red-docker:0.20.7-v10
+
 RUN npm install node-red-contrib-spark
-RUN npm install node-red-node-google
+# RUN npm install node-red-node-google
 RUN npm install node-red-contrib-time-range-switch
 RUN npm install node-red-contrib-sendgrid
+
+USER root
+RUN git clone --single-branch --branch all-current-events https://github.com/zebbra/node-red-web-nodes.git /usr/src/node-red-web-nodes
+RUN chown -R node-red:node-red /usr/src/node-red-web-nodes
+
+USER node-red
+RUN npm install /usr/src/node-red-web-nodes/google
