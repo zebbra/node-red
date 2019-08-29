@@ -4,9 +4,16 @@ metadata:
   labels:
     app: node-red
   name: node-red
+  annotations:
+    kubernetes.io/tls-acme: "true"
+
 spec:
+  tls:
+    - hosts:
+        - node-red.k8s.zebbra.ch
+      secretName: kuard-tls
   rules:
-  - host: node-red.kube.zebbra.ch
+  - host: node-red.k8s.zebbra.ch
     http:
       paths:
       - path: /
