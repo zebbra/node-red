@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: node-red
+  namespace: zebbra-pikett
 spec:
   selector:
     matchLabels:
@@ -17,7 +18,7 @@ spec:
       restartPolicy: Always
       containers:
         - name: node-red
-          image: quay.io/zebbra/node-red:v2
+          image: quay.io/zebbra/node-red:838519b
           imagePullPolicy: Always
           env: []
           ports:

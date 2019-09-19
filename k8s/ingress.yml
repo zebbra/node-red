@@ -3,9 +3,10 @@ kind: Ingress
 metadata:
   labels:
     app: node-red
+    namespace: zebbra-pikett
   name: node-red
   annotations:
-    kubernetes.io/tls-acme: "true"
+    kubernetes.io/tls-acme: 'true'
 
 spec:
   tls:
@@ -13,10 +14,10 @@ spec:
         - node-red.k8s.zebbra.ch
       secretName: kuard-tls
   rules:
-  - host: node-red.k8s.zebbra.ch
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: node-red
-          servicePort: http
+    - host: node-red.k8s.zebbra.ch
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: node-red
+              servicePort: http
