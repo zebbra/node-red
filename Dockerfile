@@ -6,7 +6,8 @@ RUN npm install node-red-contrib-time-range-switch
 RUN npm install node-red-contrib-sendgrid
 
 USER root
-RUN git clone --single-branch --branch all-current-events https://github.com/zebbra/node-red-web-nodes.git /usr/src/node-red-web-nodes
+RUN git clone https://github.com/zebbra/node-red-web-nodes.git /usr/src/node-red-web-nodes
+RUN cd /usr/src/node-red-web-nodes && git checkout 7723208
 RUN chown -R node-red:node-red /usr/src/node-red-web-nodes
 
 USER node-red
