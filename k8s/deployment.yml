@@ -18,13 +18,27 @@ spec:
       restartPolicy: Always
       containers:
         - name: node-red
-          image: quay.io/zebbra/node-red:838519b
+          image: quay.io/zebbra/node-red:e91bbd3
           imagePullPolicy: Always
           env: []
           ports:
             - containerPort: 1880
               protocol: TCP
               name: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 1880
+            timeoutSeconds: 3
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 1880
+            timeoutSeconds: 3
+            initialDelaySeconds: 15
+            periodSeconds: 30
           volumeMounts:
             - name: node-red-data
               mountPath: /data
