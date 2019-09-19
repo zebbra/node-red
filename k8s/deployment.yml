@@ -18,7 +18,7 @@ spec:
       restartPolicy: Always
       containers:
         - name: node-red
-          image: quay.io/zebbra/node-red:3537d4a
+          image: quay.io/zebbra/node-red:3fcff70
           imagePullPolicy: Always
           env: []
           ports:
