@@ -7,7 +7,7 @@ RUN npm install node-red-contrib-sendgrid
 
 USER root
 RUN git clone https://github.com/zebbra/node-red-web-nodes.git /usr/src/node-red-web-nodes
-RUN cd /usr/src/node-red-web-nodes && git reset --hard dbcdc82
+RUN cd /usr/src/node-red-web-nodes && git checkout all-current-events && git reset --hard dbcdc82
 RUN chown -R node-red:node-red /usr/src/node-red-web-nodes
 
 USER node-red
