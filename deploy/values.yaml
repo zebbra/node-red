@@ -1,0 +1,45 @@
+image:
+  repository: quay.io/zebbra/node-red
+  tag: latest
+
+# command: ["/bin/bash", "-c", "--"]
+# args: ["while true; do sleep 30; done;"]
+
+env:
+  TZ: Europe/Zurich
+
+ingress:
+  main:
+    enabled: true
+    annotations:
+      kubernetes.io/tls-acme: "true"
+    hosts:
+      - host: node-red.cloud.zebbra.ch
+        paths:
+          - path: /
+            pathType: Prefix
+            service:
+              name: node-red
+              port: 1880
+      - host: node-red.k8s.zebbra.ch
+        paths:
+          - path: /
+            pathType: Prefix
+            service:
+              name: node-red
+              port: 1880
+    tls:
+      - secretName: node-red-tls
+        hosts:
+          - node-red.cloud.zebbra.ch
+          - node-red.k8s.zebbra.ch
+
+persistence:
+  config:
+    enabled: true
+    mountPath: /data
+    size: 10Gi
+    retain: true
+
+podSecurityContext:
+  fsGroup: 1001

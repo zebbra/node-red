@@ -1,0 +1,9 @@
+repositories:
+  - name: k8s-at-home
+    url: https://k8s-at-home.com/charts/
+
+releases:
+  - name: node-red
+    chart: k8s-at-home/node-red
+    namespace: zebbra
+    values: [values.yaml]
